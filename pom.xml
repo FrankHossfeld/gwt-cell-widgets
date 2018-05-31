@@ -47,6 +47,7 @@
   <properties>
     <cldr.version>1.0-SNAPSHOT</cldr.version>
     <datetimeformat.version>1.0-SNAPSHOT</datetimeformat.version>
+    <core.version>1.0-SNAPSHOT</core.version>
     <dom.version>1.0-SNAPSHOT</dom.version>
     <event-dom.version>1.0-SNAPSHOT</event-dom.version>
     <event.version>HEAD-SNAPSHOT</event.version>

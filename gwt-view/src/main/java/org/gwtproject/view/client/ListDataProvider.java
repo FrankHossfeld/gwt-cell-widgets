@@ -23,9 +23,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-import org.gwtproject.view.client.AbstractDataProvider;
-import org.gwtproject.view.client.HasData;
-import org.gwtproject.view.client.ProvidesKey;
 
 /**
  * A concrete subclass of {@link AbstractDataProvider} that is backed by an

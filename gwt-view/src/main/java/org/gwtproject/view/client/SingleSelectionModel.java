@@ -15,10 +15,10 @@
  */
 package org.gwtproject.view.client;
 
+import org.gwtproject.view.client.SelectionModel.AbstractSelectionModel;
+
 import java.util.HashSet;
 import java.util.Set;
-import org.gwtproject.event.shared.Event;
-import org.gwtproject.view.client.SelectionModel.AbstractSelectionModel;
 
 /**
  * A simple selection model that allows only one item to be selected a a time.

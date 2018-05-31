@@ -15,11 +15,11 @@
  */
 package org.gwtproject.view.client;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import org.gwtproject.core.client.Scheduler;
 import org.gwtproject.event.shared.Event;
-import org.gwtproject.event.shared.HandlerManager;
+import org.gwtproject.event.shared.EventBus;
 import org.gwtproject.event.shared.HandlerRegistration;
+import org.gwtproject.event.shared.SimpleEventBus;
 import org.gwtproject.view.client.SelectionChangeEvent.HasSelectionChangedHandlers;
 
 /**
@@ -37,7 +37,7 @@ public interface SelectionModel<T> extends HasSelectionChangedHandlers, Provides
    */
   public abstract class AbstractSelectionModel<T> implements SelectionModel<T> {
 
-    private final HandlerManager handlerManager = new HandlerManager(this);
+    private final EventBus eventBus = new SimpleEventBus();
 
     /**
      * Set to true if the next scheduled event should be canceled.
@@ -64,12 +64,12 @@ public interface SelectionModel<T> extends HasSelectionChangedHandlers, Provides
     @Override
     public HandlerRegistration addSelectionChangeHandler(
         SelectionChangeEvent.Handler handler) {
-      return handlerManager.addHandler(SelectionChangeEvent.getType(), handler);
+      return eventBus.addHandler(SelectionChangeEvent.getType(), handler);
     }
 
     @Override
     public void fireEvent(Event<?> event) {
-      handlerManager.fireEvent(event);
+      eventBus.fireEvent(event);
     }
 
     @Override
@@ -124,15 +124,13 @@ public interface SelectionModel<T> extends HasSelectionChangedHandlers, Provides
       setEventCancelled(false);
       if (!isEventScheduled()) {
         setEventScheduled(true);
-        Scheduler.get().scheduleFinally(new ScheduledCommand() {
-          public void execute() {
-            setEventScheduled(false);
-            if (isEventCancelled()) {
-              setEventCancelled(false);
-              return;
-            }
-            fireSelectionChangeEvent();
+        Scheduler.get().scheduleFinally(() -> {
+          setEventScheduled(false);
+          if (isEventCancelled()) {
+            setEventCancelled(false);
+            return;
           }
+          fireSelectionChangeEvent();
         });
       }
     }

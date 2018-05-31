@@ -15,6 +15,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.gwtproject.core</groupId>
+      <artifactId>gwt-core</artifactId>
+      <version>${core.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.gwtproject.dom</groupId>
       <artifactId>gwt-dom</artifactId>
       <version>${dom.version}</version>
@@ -22,6 +27,11 @@
     <dependency>
       <groupId>org.gwtproject.event</groupId>
       <artifactId>gwt-event</artifactId>
+      <version>${event.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.gwtproject.event</groupId>
+      <artifactId>gwt-event-legacy</artifactId>
       <version>${event.version}</version>
     </dependency>
   </dependencies>

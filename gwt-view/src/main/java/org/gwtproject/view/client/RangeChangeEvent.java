@@ -15,7 +15,7 @@
  */
 package org.gwtproject.view.client;
 
-import com.google.gwt.event.shared.EventHandler;
+import org.gwtproject.event.legacy.shared.EventHandler;
 import org.gwtproject.event.shared.Event;
 import org.gwtproject.view.client.RangeChangeEvent.Handler;
 

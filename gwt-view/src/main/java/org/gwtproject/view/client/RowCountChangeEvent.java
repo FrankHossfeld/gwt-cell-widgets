@@ -15,8 +15,8 @@
  */
 package org.gwtproject.view.client;
 
+import org.gwtproject.event.legacy.shared.EventHandler;
 import org.gwtproject.event.shared.Event;
-import org.gwtproject.event.shared.EventHandler;
 import org.gwtproject.view.client.RowCountChangeEvent.Handler;
 
 /**

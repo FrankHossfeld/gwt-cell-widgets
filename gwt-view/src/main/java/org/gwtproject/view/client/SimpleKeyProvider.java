@@ -13,9 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.gwt.view.client;
-
-import org.gwtproject.view.client.ProvidesKey;
+package org.gwtproject.view.client;
 
 /**
  * Simple passthrough implementation of {@link ProvidesKey}.

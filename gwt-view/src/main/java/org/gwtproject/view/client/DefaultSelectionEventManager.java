@@ -1,12 +1,12 @@
 /*
  * Copyright 2018 The GWT Project Authors
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,6 +15,9 @@
  */
 package org.gwtproject.view.client;
 
+import org.gwtproject.dom.client.BrowserEvents;
+import org.gwtproject.dom.client.Element;
+import org.gwtproject.dom.client.InputElement;
 import org.gwtproject.dom.client.NativeEvent;
 
 import java.util.*;
@@ -22,14 +25,14 @@ import java.util.*;
 /**
  * An implementation of {@link CellPreviewEvent.Handler} that adds selection
  * support via the spacebar and mouse clicks and handles the control key.
- * 
+ *
  * <p>
  * If the {@link HasData} source of the selection event uses a
  * {@link MultiSelectionModel}, this manager additionally provides support for
  * shift key to select a range of values. For all other {@link SelectionModel}s,
  * only the control key is supported.
  * </p>
- * 
+ *
  * @param <T> the data type of records in the list
  */
 public class DefaultSelectionEventManager<T> implements
@@ -38,7 +41,7 @@ public class DefaultSelectionEventManager<T> implements
   /**
    * An event translator that disables selection for the specified blacklisted
    * columns.
-   * 
+   *
    * @param <T> the data type
    */
   public static class BlacklistEventTranslator<T> implements EventTranslator<T> {
@@ -46,7 +49,7 @@ public class DefaultSelectionEventManager<T> implements
 
     /**
      * Construct a new {@link BlacklistEventTranslator}.
-     * 
+     *
      * @param blacklistedColumns the columns to blacklist
      */
     public BlacklistEventTranslator(int... blacklistedColumns) {
@@ -70,7 +73,7 @@ public class DefaultSelectionEventManager<T> implements
 
     /**
      * Check if the specified column is blacklisted.
-     * 
+     *
      * @param index the column index
      * @return true if blacklisted, false if not
      */
@@ -80,7 +83,7 @@ public class DefaultSelectionEventManager<T> implements
 
     /**
      * Set whether or not the specified column in blacklisted.
-     * 
+     *
      * @param index the column index
      * @param isBlacklisted true to blacklist, false to allow selection
      */
@@ -97,11 +100,11 @@ public class DefaultSelectionEventManager<T> implements
           : SelectAction.DEFAULT;
     }
   }
-  
+
   /**
    * Implementation of {@link EventTranslator} that only triggers selection when
    * any checkbox is selected.
-   * 
+   *
    * @param <T> the data type
    */
   public static class CheckboxEventTranslator<T> implements EventTranslator<T> {
@@ -122,7 +125,7 @@ public class DefaultSelectionEventManager<T> implements
     /**
      * Construct a new {@link CheckboxEventTranslator} that will trigger
      * selection when a checkbox in the specified column is selected.
-     * 
+     *
      * @param column the column index, or -1 for all columns
      */
     public CheckboxEventTranslator(int column) {
@@ -168,14 +171,14 @@ public class DefaultSelectionEventManager<T> implements
     /**
      * Check whether a user selection event should clear all currently selected
      * values.
-     * 
+     *
      * @param event the {@link CellPreviewEvent} to translate
      */
     boolean clearCurrentSelection(CellPreviewEvent<T> event);
 
     /**
      * Translate the user selection event into a {@link SelectAction}.
-     * 
+     *
      * @param event the {@link CellPreviewEvent} to translate
      */
     SelectAction translateSelectionEvent(CellPreviewEvent<T> event);
@@ -195,7 +198,7 @@ public class DefaultSelectionEventManager<T> implements
   /**
    * An event translator that allows selection only for the specified
    * whitelisted columns.
-   * 
+   *
    * @param <T> the data type
    */
   public static class WhitelistEventTranslator<T> implements EventTranslator<T> {
@@ -203,7 +206,7 @@ public class DefaultSelectionEventManager<T> implements
 
     /**
      * Construct a new {@link WhitelistEventTranslator}.
-     * 
+     *
      * @param whitelistedColumns the columns to whitelist
      */
     public WhitelistEventTranslator(int... whitelistedColumns) {
@@ -227,7 +230,7 @@ public class DefaultSelectionEventManager<T> implements
 
     /**
      * Check if the specified column is whitelisted.
-     * 
+     *
      * @param index the column index
      * @return true if whitelisted, false if not
      */
@@ -237,7 +240,7 @@ public class DefaultSelectionEventManager<T> implements
 
     /**
      * Set whether or not the specified column in whitelisted.
-     * 
+     *
      * @param index the column index
      * @param isWhitelisted true to whitelist, false to allow disallow selection
      */
@@ -258,7 +261,7 @@ public class DefaultSelectionEventManager<T> implements
   /**
    * Construct a new {@link DefaultSelectionEventManager} that ignores selection
    * for the columns in the specified blacklist.
-   * 
+   *
    * @param <T> the data type of the display
    * @param blacklistedColumns the columns to include in the blacklist
    * @return a {@link DefaultSelectionEventManager} instance
@@ -268,11 +271,11 @@ public class DefaultSelectionEventManager<T> implements
     return new DefaultSelectionEventManager<T>(new BlacklistEventTranslator<T>(
         blacklistedColumns));
   }
-  
+
   /**
    * Construct a new {@link DefaultSelectionEventManager} that triggers
    * selection when any checkbox in any column is clicked.
-   * 
+   *
    * @param <T> the data type of the display
    * @return a {@link DefaultSelectionEventManager} instance
    */
@@ -283,7 +286,7 @@ public class DefaultSelectionEventManager<T> implements
   /**
    * Construct a new {@link DefaultSelectionEventManager} that triggers
    * selection when a checkbox in the specified column is clicked.
-   * 
+   *
    * @param <T> the data type of the display
    * @param column the column to handle
    * @return a {@link DefaultSelectionEventManager} instance
@@ -298,7 +301,7 @@ public class DefaultSelectionEventManager<T> implements
    * Create a new {@link DefaultSelectionEventManager} using the specified
    * {@link EventTranslator} to control which {@link SelectAction} to take for
    * each event.
-   * 
+   *
    * @param <T> the data type of the display
    * @param translator the {@link EventTranslator} to use
    * @return a {@link DefaultSelectionEventManager} instance
@@ -311,7 +314,7 @@ public class DefaultSelectionEventManager<T> implements
   /**
    * Create a new {@link DefaultSelectionEventManager} that handles selection
    * via user interactions.
-   * 
+   *
    * @param <T> the data type of the display
    * @return a new {@link DefaultSelectionEventManager} instance
    */
@@ -322,7 +325,7 @@ public class DefaultSelectionEventManager<T> implements
   /**
    * Construct a new {@link DefaultSelectionEventManager} that allows selection
    * only for the columns in the specified whitelist.
-   * 
+   *
    * @param <T> the data type of the display
    * @param whitelistedColumns the columns to include in the whitelist
    * @return a {@link DefaultSelectionEventManager} instance
@@ -368,7 +371,7 @@ public class DefaultSelectionEventManager<T> implements
    * Construct a new {@link DefaultSelectionEventManager} using the specified
    * {@link EventTranslator} to control which {@link SelectAction} to take for
    * each event.
-   * 
+   *
    * @param translator the {@link EventTranslator} to use
    */
   protected DefaultSelectionEventManager(EventTranslator<T> translator) {
@@ -377,7 +380,7 @@ public class DefaultSelectionEventManager<T> implements
 
   /**
    * Update the selection model based on a user selection event.
-   * 
+   *
    * @param selectionModel the selection model to update
    * @param row the absolute index of the selected row
    * @param rowValue the selected row value
@@ -481,7 +484,7 @@ public class DefaultSelectionEventManager<T> implements
 
   /**
    * Removes all items from the selection.
-   * 
+   *
    * @param selectionModel the {@link MultiSelectionModel} to clear
    */
   protected void clearSelection(
@@ -494,7 +497,7 @@ public class DefaultSelectionEventManager<T> implements
    * {@link MultiSelectionModel}. This overloaded method adds support for both
    * the control and shift keys. If the shift key is held down, all rows between
    * the previous selected row and the current row are selected.
-   * 
+   *
    * @param event the {@link CellPreviewEvent} that triggered selection
    * @param action the action to handle
    * @param selectionModel the {@link SelectionModel} to update
@@ -541,7 +544,7 @@ public class DefaultSelectionEventManager<T> implements
    * Handle an event that could cause a value to be selected. This method works
    * for any {@link SelectionModel}. Pressing the space bar or ctrl+click will
    * toggle the selection state. Clicking selects the row if it is not selected.
-   * 
+   *
    * @param event the {@link CellPreviewEvent} that triggered selection
    * @param action the action to handle
    * @param selectionModel the {@link SelectionModel} to update
@@ -588,7 +591,7 @@ public class DefaultSelectionEventManager<T> implements
 
   /**
    * Selects the given item, optionally clearing any prior selection.
-   * 
+   *
    * @param selectionModel the {@link MultiSelectionModel} to update
    * @param target the item to select
    * @param selected true to select, false to deselect
@@ -605,7 +608,7 @@ public class DefaultSelectionEventManager<T> implements
   /**
    * Select or deselect a range of row indexes, optionally deselecting all other
    * values.
-   * 
+   *
    * @param selectionModel the {@link MultiSelectionModel} to update
    * @param display the {@link HasData} source of the selection event
    * @param range the {@link Range} of rows to select or deselect

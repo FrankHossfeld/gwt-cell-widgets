@@ -15,7 +15,6 @@
  */
 package org.gwtproject.view.client;
 
-
 import org.gwtproject.view.client.SelectionModel.AbstractSelectionModel;
 
 /**

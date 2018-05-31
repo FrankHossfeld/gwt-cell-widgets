@@ -13,17 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.gwt.view.client;
+package org.gwtproject.view.client;
 
 import com.google.gwt.cell.client.Cell;
-import org.gwtproject.cell.client.ValueUpdater;
+import com.google.gwt.cell.client.ValueUpdater;
 import org.gwtproject.event.shared.HandlerRegistration;
-import org.gwtproject.view.client.AbstractDataProvider;
-import org.gwtproject.view.client.CellPreviewEvent;
-import org.gwtproject.view.client.DefaultSelectionEventManager;
-import org.gwtproject.view.client.HasData;
-import org.gwtproject.view.client.ProvidesKey;
-import org.gwtproject.view.client.SelectionModel;
 
 /**
  * A model of a tree.
@@ -35,13 +29,13 @@ public interface TreeViewModel {
    */
   class DefaultNodeInfo<T> implements NodeInfo<T> {
 
-    private final Cell<T> cell;
-    private final AbstractDataProvider<T> dataProvider;
+    private final Cell<T>                     cell;
+    private final AbstractDataProvider<T>     dataProvider;
     private final CellPreviewEvent.Handler<T> selectionEventManager;
-    private HandlerRegistration selectionEventManagerReg;
-    private final SelectionModel<? super T> selectionModel;
-    private final ValueUpdater<T> valueUpdater;
-    private HasData<T> display;
+    private       HandlerRegistration         selectionEventManagerReg;
+    private final SelectionModel<? super T>   selectionModel;
+    private final ValueUpdater<T>             valueUpdater;
+    private       HasData<T>                  display;
 
     /**
      * Construct a new {@link DefaultNodeInfo}.
