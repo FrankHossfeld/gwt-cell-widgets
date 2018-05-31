@@ -15,7 +15,6 @@
  */
 package org.gwtproject.cell.client;
 
-
 import static org.gwtproject.dom.client.BrowserEvents.CLICK;
 import static org.gwtproject.dom.client.BrowserEvents.KEYDOWN;
 

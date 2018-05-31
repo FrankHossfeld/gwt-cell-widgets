@@ -16,7 +16,7 @@
   <modules>
     <module>gwt-cell</module>
     <module>gwt-view</module>
-    <module>gwt-cellview</module>
+    <module>gwt-cell-view</module>
   </modules>
 
   <inceptionYear>2018</inceptionYear>
