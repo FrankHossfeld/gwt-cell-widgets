@@ -15,16 +15,7 @@
  */
 package org.gwtproject.cell.client;
 
-import static org.gwtproject.dom.client.BrowserEvents.CLICK;
-import static org.gwtproject.dom.client.BrowserEvents.KEYDOWN;
-import static org.gwtproject.dom.client.BrowserEvents.MOUSEDOWN;
-
 import com.google.gwt.core.client.GWT;
-import org.gwtproject.dom.client.BrowserEvents;
-import org.gwtproject.dom.client.Element;
-import org.gwtproject.dom.client.NativeEvent;
-import org.gwtproject.dom.client.Style.Unit;
-import org.gwtproject.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CommonResources;
@@ -33,25 +24,31 @@ import com.google.gwt.resources.client.CssResource.ImportedWithPrefix;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.resources.client.ImageResource.ImageOptions;
 import com.google.gwt.resources.client.ImageResource.RepeatStyle;
-import com.google.gwt.safecss.shared.SafeStyles;
-import com.google.gwt.safecss.shared.SafeStylesBuilder;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
+import com.google.gwt.user.client.ui.HasEnabled;
+import org.gwtproject.dom.client.BrowserEvents;
+import org.gwtproject.dom.client.Element;
+import org.gwtproject.dom.client.NativeEvent;
+import org.gwtproject.dom.client.Style.Unit;
+import org.gwtproject.event.shared.HandlerRegistration;
+import org.gwtproject.safecss.shared.SafeStyles;
+import org.gwtproject.safecss.shared.SafeStylesBuilder;
 import org.gwtproject.safehtml.client.SafeHtmlTemplates;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.gwtproject.safehtml.shared.SafeHtmlUtils;
 import org.gwtproject.text.shared.SafeHtmlRenderer;
-import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.Event.NativePreviewEvent;
-import com.google.gwt.user.client.Event.NativePreviewHandler;
-import com.google.gwt.user.client.ui.AbstractImagePrototype;
-import com.google.gwt.user.client.ui.HasEnabled;
+
+import static org.gwtproject.dom.client.BrowserEvents.*;
 
 /**
  * Base class for button Cells.
  * 
  * @param <C> the type that this Cell represents
  */
-public class ButtonCellBase<C> extends AbstractCell<C> implements IsCollapsible, HasEnabled {
+public class ButtonCellBase<C> extends AbstractCell<C> implements IsCollapsible,
+                                                                  HasEnabled {
 
   /**
    * The appearance used to render this Cell.
@@ -187,7 +184,7 @@ public class ButtonCellBase<C> extends AbstractCell<C> implements IsCollapsible,
       @SafeHtmlTemplates.Template("<div class=\"{0}\""
           + " style=\"{1}position:relative;zoom:0;\">{2}{3}</div>")
       SafeHtml iconContentLayout(
-          String classes, SafeStyles styles, SafeHtml icon, SafeHtml cellContents);
+        String classes, SafeStyles styles, SafeHtml icon, SafeHtml cellContents);
 
       /**
        * The wrapper around the icon that aligns it vertically with the text.
@@ -346,7 +343,7 @@ public class ButtonCellBase<C> extends AbstractCell<C> implements IsCollapsible,
    * The {@link NativePreviewHandler} used to unpush a button onmouseup, even if
    * the event doesn't occur over the button.
    */
-  private class UnpushHandler implements NativePreviewHandler {
+  private class UnpushHandler implements Event.NativePreviewHandler {
 
     private final Element parent;
     private final HandlerRegistration reg;
@@ -357,7 +354,7 @@ public class ButtonCellBase<C> extends AbstractCell<C> implements IsCollapsible,
     }
 
     @Override
-    public void onPreviewNativeEvent(NativePreviewEvent event) {
+    public void onPreviewNativeEvent(Event.NativePreviewEvent event) {
       if (BrowserEvents.MOUSEUP.equals(event.getNativeEvent().getType())) {
         // Unregister self.
         reg.removeHandler();

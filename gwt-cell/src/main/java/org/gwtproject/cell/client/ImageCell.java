@@ -15,9 +15,6 @@
  */
 package org.gwtproject.cell.client;
 
-import com.google.gwt.core.client.GWT;
-import org.gwtproject.safehtml.client.SafeHtmlTemplates;
-import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 /**
@@ -34,27 +31,19 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
  */
 public class ImageCell extends AbstractCell<String> {
 
-  interface Template extends SafeHtmlTemplates {
-    @Template("<img src=\"{0}\"/>")
-    SafeHtml img(String url);
-  }
-
-  private static Template template;
-
   /**
    * Construct a new ImageCell.
    */
   public ImageCell() {
-    if (template == null) {
-      template = GWT.create(Template.class);
-    }
   }
 
   @Override
   public void render(Context context, String value, SafeHtmlBuilder sb) {
     if (value != null) {
       // The template will sanitize the URI.
-      sb.append(template.img(value));
+      sb.appendHtmlConstant("<img src=\"")
+        .appendHtmlConstant(value)
+        .appendHtmlConstant("\"/>");
     }
   }
 }

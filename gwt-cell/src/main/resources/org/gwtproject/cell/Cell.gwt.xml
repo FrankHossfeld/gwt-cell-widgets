@@ -21,11 +21,12 @@
   <inherits name="org.gwtproject.event.dom.EventDOM"/>
   <inherits name="org.gwtproject.event.logical.LogicalEvent"/>
   <inherits name="org.gwtproject.event.Event"/>
+  <inherits name="org.gwtproject.safecss.SafeCss"/>
   <inherits name="org.gwtproject.safehtml.SafeHtml"/>
   <inherits name="org.gwtproject.text.Text"/>
 
   <inherits name="org.gwtproject.cell.TextButtonCell"/>
-  
+
   <source path="client"/>
   <public path="public" />
 </module>

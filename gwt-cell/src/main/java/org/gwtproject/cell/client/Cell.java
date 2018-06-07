@@ -15,10 +15,11 @@
  */
 package org.gwtproject.cell.client;
 
-import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
-import java.util.Set;
 import org.gwtproject.dom.client.Element;
 import org.gwtproject.dom.client.NativeEvent;
+import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+
+import java.util.Set;
 
 /**
  * A lightweight representation of a renderable object.

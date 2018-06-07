@@ -15,10 +15,11 @@
  */
 package org.gwtproject.cell.client;
 
-import org.gwtproject.text.shared.SafeHtmlRenderer;
-import java.util.Set;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+import org.gwtproject.text.shared.SafeHtmlRenderer;
+
+import java.util.Set;
 
 
 /**

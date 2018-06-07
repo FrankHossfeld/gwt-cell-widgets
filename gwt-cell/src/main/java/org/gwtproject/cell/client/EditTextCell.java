@@ -15,13 +15,7 @@
  */
 package org.gwtproject.cell.client;
 
-import static org.gwtproject.dom.client.BrowserEvents.BLUR;
-import static org.gwtproject.dom.client.BrowserEvents.CLICK;
-import static org.gwtproject.dom.client.BrowserEvents.KEYDOWN;
-import static org.gwtproject.dom.client.BrowserEvents.KEYUP;
-
 import com.google.gwt.core.client.GWT;
-import java.util.Locale;
 import org.gwtproject.dom.client.Element;
 import org.gwtproject.dom.client.EventTarget;
 import org.gwtproject.dom.client.InputElement;
@@ -33,16 +27,20 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.gwtproject.text.shared.SafeHtmlRenderer;
 import org.gwtproject.text.shared.SimpleSafeHtmlRenderer;
 
+import java.util.Locale;
+
+import static org.gwtproject.dom.client.BrowserEvents.*;
+
 /**
  * An editable text cell. Click to edit, escape to cancel, return to commit.
  */
 public class EditTextCell extends
     AbstractEditableCell<String, EditTextCell.ViewData> {
 
-  interface Template extends SafeHtmlTemplates {
-    @Template("<input type=\"text\" value=\"{0}\" tabindex=\"-1\"></input>")
-    SafeHtml input(String value);
-  }
+//  interface Template extends SafeHtmlTemplates {
+//    @Template("<input type=\"text\" value=\"{0}\" tabindex=\"-1\"></input>")
+//    SafeHtml input(String value);
+//  }
 
   /**
    * The view data object used by this cell. We need to store both the text and
@@ -134,7 +132,7 @@ public class EditTextCell extends
     }
   }
 
-  private static Template template;
+//  private static Template template;
 
   private final SafeHtmlRenderer<String> renderer;
 
@@ -167,7 +165,7 @@ public class EditTextCell extends
   @Override
   public boolean isEditing(Context context, Element parent, String value) {
     ViewData viewData = getViewData(context.getKey());
-    return viewData == null ? false : viewData.isEditing();
+    return viewData != null && viewData.isEditing();
   }
 
   @Override

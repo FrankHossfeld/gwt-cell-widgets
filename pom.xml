@@ -54,6 +54,7 @@
     <event-logical.version>HEAD-SNAPSHOT</event-logical.version>
     <gwt.version>2.8.2</gwt.version>
     <i18n.version>1.0-SNAPSHOT</i18n.version>
+    <safecss.version>1.0-SNAPSHOT</safecss.version>
     <safehtml.version>1.0-SNAPSHOT</safehtml.version>
     <text.version>1.0-SNAPSHOT</text.version>
 

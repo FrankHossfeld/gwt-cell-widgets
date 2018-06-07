@@ -15,13 +15,10 @@
  */
 package org.gwtproject.cell.client;
 
-import com.google.gwt.core.client.GWT;
 import org.gwtproject.dom.client.BrowserEvents;
 import org.gwtproject.dom.client.Element;
 import org.gwtproject.dom.client.InputElement;
 import org.gwtproject.dom.client.NativeEvent;
-import org.gwtproject.safehtml.client.SafeHtmlTemplates;
-import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 /**
@@ -29,11 +26,6 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
  */
 public class TextInputCell extends
     AbstractInputCell<String, TextInputCell.ViewData> {
-
-  interface Template extends SafeHtmlTemplates {
-    @Template("<input type=\"text\" value=\"{0}\" tabindex=\"-1\"></input>")
-    SafeHtml input(String value);
-  }
 
   /**
    * The {@code ViewData} for this cell.
@@ -122,20 +114,17 @@ public class TextInputCell extends
     }
 
     private boolean equalsOrNull(Object a, Object b) {
-      return (a != null) ? a.equals(b) : ((b == null) ? true : false);
+      return (a != null) ? a.equals(b) : (b == null);
     }
   }
 
-  private static Template template;
+//  private static Template template;
 
   /**
    * Constructs a TextInputCell that renders its text without HTML markup.
    */
   public TextInputCell() {
     super(BrowserEvents.CHANGE, BrowserEvents.KEYUP);
-    if (template == null) {
-      template = GWT.create(Template.class);
-    }
   }
 
   @Override
@@ -177,7 +166,9 @@ public class TextInputCell extends
 
     String s = (viewData != null) ? viewData.getCurrentValue() : value;
     if (s != null) {
-      sb.append(template.input(s));
+      sb.appendHtmlConstant("<input type=\"text\" value=\"")
+        .appendHtmlConstant(s)
+        .appendHtmlConstant("\" tabindex=\"1\"></input>");
     } else {
       sb.appendHtmlConstant("<input type=\"text\" tabindex=\"-1\"></input>");
     }

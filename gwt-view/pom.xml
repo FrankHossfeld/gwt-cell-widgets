@@ -25,6 +25,11 @@
       <version>${dom.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.gwtproject.cell</groupId>
+      <artifactId>gwt-cell</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.gwtproject.event</groupId>
       <artifactId>gwt-event</artifactId>
       <version>${event.version}</version>

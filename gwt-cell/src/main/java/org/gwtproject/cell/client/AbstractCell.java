@@ -20,6 +20,7 @@ import org.gwtproject.dom.client.Element;
 import org.gwtproject.dom.client.NativeEvent;
 import org.gwtproject.event.dom.client.KeyCodes;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;

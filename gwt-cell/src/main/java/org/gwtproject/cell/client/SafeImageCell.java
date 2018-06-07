@@ -15,9 +15,6 @@
  */
 package org.gwtproject.cell.client;
 
-import com.google.gwt.core.client.GWT;
-import org.gwtproject.safehtml.client.SafeHtmlTemplates;
-import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.gwtproject.safehtml.shared.SafeUri;
 
@@ -33,28 +30,23 @@ import org.gwtproject.safehtml.shared.SafeUri;
  * @see ImageCell
  * @see ImageResourceCell
  */
-public class SafeImageCell extends AbstractCell<SafeUri> {
-
-  interface Template extends SafeHtmlTemplates {
-    @Template("<img src=\"{0}\"/>")
-    SafeHtml img(SafeUri url);
-  }
-
-  private static Template template;
+public class SafeImageCell
+  extends AbstractCell<SafeUri> {
 
   /**
    * Construct a new SafeImageCell.
    */
   public SafeImageCell() {
-    if (template == null) {
-      template = GWT.create(Template.class);
-    }
   }
 
   @Override
-  public void render(Context context, SafeUri value, SafeHtmlBuilder sb) {
+  public void render(Context context,
+                     SafeUri value,
+                     SafeHtmlBuilder sb) {
     if (value != null) {
-      sb.append(template.img(value));
+      sb.appendHtmlConstant("<img src=\"")
+        .appendHtmlConstant(value.asString()) // TODO: check if this will work!
+        .appendHtmlConstant("\"/>");
     }
   }
 }

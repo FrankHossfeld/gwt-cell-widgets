@@ -50,6 +50,11 @@
       <version>${i18n.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.gwtproject.safecss</groupId>
+      <artifactId>gwt-safecss</artifactId>
+      <version>${safecss.version}</version>
+    </dependency>
+   <dependency>
       <groupId>org.gwtproject.safehtml</groupId>
       <artifactId>gwt-safehtml</artifactId>
       <version>${safehtml.version}</version>

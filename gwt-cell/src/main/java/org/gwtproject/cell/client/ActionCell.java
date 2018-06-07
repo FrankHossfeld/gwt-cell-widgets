@@ -15,15 +15,15 @@
  */
 package org.gwtproject.cell.client;
 
-import static org.gwtproject.dom.client.BrowserEvents.CLICK;
-import static org.gwtproject.dom.client.BrowserEvents.KEYDOWN;
-
 import org.gwtproject.dom.client.Element;
 import org.gwtproject.dom.client.EventTarget;
 import org.gwtproject.dom.client.NativeEvent;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.gwtproject.safehtml.shared.SafeHtmlUtils;
+
+import static org.gwtproject.dom.client.BrowserEvents.CLICK;
+import static org.gwtproject.dom.client.BrowserEvents.KEYDOWN;
 
 /**
  * A cell that renders a button and takes a delegate to perform actions on
@@ -59,9 +59,10 @@ public class ActionCell<C> extends AbstractCell<C> {
   public ActionCell(SafeHtml message, Delegate<C> delegate) {
     super(CLICK, KEYDOWN);
     this.delegate = delegate;
-    this.html = new SafeHtmlBuilder().appendHtmlConstant(
-        "<button type=\"button\" tabindex=\"-1\">").append(message).appendHtmlConstant(
-        "</button>").toSafeHtml();
+    this.html = new SafeHtmlBuilder().appendHtmlConstant("<button type=\"button\" tabindex=\"-1\">")
+                                     .append(message)
+                                     .appendHtmlConstant("</button>")
+                                     .toSafeHtml();
   }
 
   /**

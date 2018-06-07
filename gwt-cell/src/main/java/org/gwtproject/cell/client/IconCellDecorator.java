@@ -18,19 +18,20 @@ package org.gwtproject.cell.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.safecss.shared.SafeStyles;
-import com.google.gwt.safecss.shared.SafeStylesBuilder;
-import com.google.gwt.safecss.shared.SafeStylesUtils;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment.VerticalAlignmentConstant;
-import java.util.Set;
 import org.gwtproject.dom.client.Element;
 import org.gwtproject.dom.client.NativeEvent;
+import org.gwtproject.safecss.shared.SafeStyles;
+import org.gwtproject.safecss.shared.SafeStylesBuilder;
+import org.gwtproject.safecss.shared.SafeStylesUtils;
 import org.gwtproject.safehtml.client.SafeHtmlTemplates;
 import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.gwtproject.safehtml.shared.SafeHtmlUtils;
+
+import java.util.Set;
 
 /**
  * A {@link Cell} decorator that adds an icon to another {@link Cell}.

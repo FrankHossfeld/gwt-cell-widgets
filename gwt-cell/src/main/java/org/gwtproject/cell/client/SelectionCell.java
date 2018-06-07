@@ -15,13 +15,10 @@
  */
 package org.gwtproject.cell.client;
 
-import com.google.gwt.core.client.GWT;
 import org.gwtproject.dom.client.BrowserEvents;
 import org.gwtproject.dom.client.Element;
 import org.gwtproject.dom.client.NativeEvent;
 import org.gwtproject.dom.client.SelectElement;
-import org.gwtproject.safehtml.client.SafeHtmlTemplates;
-import org.gwtproject.safehtml.shared.SafeHtml;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import java.util.ArrayList;
@@ -32,16 +29,6 @@ import java.util.List;
  * A {@link Cell} used to render a drop-down list.
  */
 public class SelectionCell extends AbstractInputCell<String, String> {
-
-  interface Template extends SafeHtmlTemplates {
-    @Template("<option value=\"{0}\">{0}</option>")
-    SafeHtml deselected(String option);
-
-    @Template("<option value=\"{0}\" selected=\"selected\">{0}</option>")
-    SafeHtml selected(String option);
-  }
-
-  private static Template template;
 
   private HashMap<String, Integer> indexForOption = new HashMap<String, Integer>();
 
@@ -54,9 +41,6 @@ public class SelectionCell extends AbstractInputCell<String, String> {
    */
   public SelectionCell(List<String> options) {
     super(BrowserEvents.CHANGE);
-    if (template == null) {
-      template = GWT.create(Template.class);
-    }
     this.options = new ArrayList<String>(options);
     int index = 0;
     for (String option : options) {
@@ -96,9 +80,17 @@ public class SelectionCell extends AbstractInputCell<String, String> {
     int index = 0;
     for (String option : options) {
       if (index++ == selectedIndex) {
-        sb.append(template.selected(option));
+        sb.appendHtmlConstant("<option value=\"")
+          .appendHtmlConstant(option)
+          .appendHtmlConstant("\" selected=\"selected\">")
+          .appendHtmlConstant(option)
+          .appendHtmlConstant("</option>");
       } else {
-        sb.append(template.deselected(option));
+        sb.appendHtmlConstant("<option value=\"")
+          .appendHtmlConstant(option)
+          .appendHtmlConstant("\">")
+          .appendHtmlConstant(option)
+          .appendHtmlConstant("</option>");
       }
     }
     sb.appendHtmlConstant("</select>");
